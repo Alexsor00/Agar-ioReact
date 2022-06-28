@@ -1,0 +1,12 @@
+.grid {
+    height: 100vh;
+    width: 100vmax;
+    margin: 0;
+  }
+  .grid {
+    background-image:
+      repeating-linear-gradient(#ccc 0 1px, transparent 1px 100%),
+      repeating-linear-gradient(90deg, #ccc 0 1px, transparent 1px 100%);
+    background-size: 120px 120px;
+    opacity: 0.5;
+  }
