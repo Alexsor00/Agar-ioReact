@@ -10,8 +10,10 @@ export default function Player ({setPlayerPosition}){
   var timer;
   var interval;
   const [size, setSize] = useState(170)
-   
+  
 
+  const [playerX, setPlayerX] = useState(0)
+  const [playerY, setPlayer] = useState(0)
 
 
   useEffect(() => {
@@ -24,23 +26,28 @@ export default function Player ({setPlayerPosition}){
   }
     
 
-  
+  var position_playerX = 0;
+  var position_playerY = 0;
 
 const updatePosition = () => {
  
   const player = document.getElementById('player');
 
-  const position_playerX = player.getBoundingClientRect().left;
-  const position_playerY = player.getBoundingClientRect().top;
-  const position_mouseX = point.x;
-  const position_mouseY = point.y;
 
-  const directionX = position_mouseX - position_playerX - size/2;
-  const directionY = position_mouseY - position_playerY - size/2;
-  
+  const position_mouseX = point.x  - size/2;
+  const position_mouseY = point.y - size/2;
+
+  const directionX = (position_mouseX ) - position_playerX ;
+  const directionY = (position_mouseY) - position_playerY ;
+  player.style.left = (position_mouseX) +'px';
+  player.style.top =  position_mouseY + 'px'
+
+
     player.style.left = (position_playerX+(directionX*0.0003))+'px'
     player.style.top = (position_playerY+(directionY*0.0003))+'px'
 
+    position_playerX = (position_playerX+(directionX*0.0003));
+    position_playerY = position_playerY+(directionY*0.0003);
     setPlayerPosition({
       x: (position_playerX+(directionX*0.0003)),
       y: (position_playerY+(directionY*0.0003))

@@ -15,9 +15,7 @@ export default function Minion ({PlayerPosition}){
      var b = PlayerPosition.y - posy_minion ;
 
     var c = Math.sqrt( a*a + b*b );
-
-
-    if(c < 20) console.log("hellooo")
+    console.log("Distance: " + (c-25))
 
   }, [PlayerPosition])
  
