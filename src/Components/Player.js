@@ -2,17 +2,17 @@ import { useEffect, useState } from 'react';
 import './Styles/Player.css'
 
 
-export default function Player (){
-
-
+export default function Player ({setPlayerPosition}){
+  var point = {
+    x: 0,
+    y: 0
+  }
+  var timer;
+  var interval;
   const [size, setSize] = useState(170)
    
-  const [player_1, setPlayer_1] = useState(null)
-  const [arrives, setArrives] = useState(false)
-  const [direcctionX, setDirecctionX] = useState(null)
-  const [direcctionY, setDirecctionY] = useState(null)
-  const [position_X, setPosition_X] = useState(null)
-  const [position_Y, setPosition_Y] = useState(null)
+
+
 
   useEffect(() => {
 
@@ -20,50 +20,59 @@ export default function Player (){
   }, [])
 
  const onClickHandler = () => {
-    player_1.style.width = size + 'px'
-    player_1.style.height = size + 'px'
     setSize(size + 5)
-    console.log(player_1.width)
   }
     
 
   
 
-const updatePosition = (point) => {
-  console.log(document.getElementById('player'))
+const updatePosition = () => {
+ 
   const player = document.getElementById('player');
 
-    const position_playerX = player.getBoundingClientRect().left;
-    const position_playerY = player.getBoundingClientRect().top;
-    setPosition_X(position_playerX)
-    setPosition_Y(position_playerY)
-    const position_mouseX = point.x;
-    const position_mouseY = point.y;
+  const position_playerX = player.getBoundingClientRect().left;
+  const position_playerY = player.getBoundingClientRect().top;
+  const position_mouseX = point.x;
+  const position_mouseY = point.y;
 
-    const directionX = position_mouseX - position_playerX;
-    const directionY = position_mouseY - position_playerY;
-    setDirecctionX(directionX)
-    setDirecctionY(directionY)
-      if(directionX === 0 && directionY === 0) setArrives(true);
+  const directionX = position_mouseX - position_playerX - size/2;
+  const directionY = position_mouseY - position_playerY - size/2;
+  
+    player.style.left = (position_playerX+(directionX*0.0003))+'px'
+    player.style.top = (position_playerY+(directionY*0.0003))+'px'
 
-      player.style.left = (position_playerX+(directionX))+'px'
-     // player.style.top = (position_playerY+(directionY*0.01))+'px'
+    setPlayerPosition({
+      x: (position_playerX+(directionX*0.0003)),
+      y: (position_playerY+(directionY*0.0003))
+    })
+
 
 
 } 
 
+
+
+
+
+
+
+
+
+
  const setPosition = () =>{
-  var point = {
-    x: 0,
-    y: 0
-  }
+ 
   onmousemove = function(e){
+    clearInterval(interval)
       point.x = e.clientX;
       point.y = e.clientY
+     
+      
+        
+      
+         setInterval(() => updatePosition(), 20);
 
-  }
+      }
   
-  setInterval(() => updatePosition(point), 20);
 
    }
 

@@ -1,22 +1,21 @@
+import { useEffect } from "react";
 import Minion from "./Minion";
 
 
-export default function Minions(){
+export default function Minions({PlayerPosition}){
 
 
+   
     var number = [];
-    for (var i = 0; i < 20; i++) {
-        const x_max = window.innerWidth;
-        const y_max = window.innerHeight;
-       const positionX =  Math.random() * (x_max - 0 + 1) + 0;
-       const positionY = Math.random() * (y_max - 0 + 1) + 0;
+    for (var i = 0; i < 1; i++) {
+        number.push(<Minion PlayerPosition = {PlayerPosition} />)
     }
    return (
     <>
 
-
-<Minion key={1} x={50} y={210} />
-    <Minion key= {2} x={50} y={260} />
+   {number.map((minion, index) => {
+      return <div key={index}>{minion}</div>
+   })}
     </>
    
     
