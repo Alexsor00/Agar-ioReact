@@ -37,7 +37,7 @@ const updatePosition = () => {
   const position_mouseX = point.x  - size/2;
   const position_mouseY = point.y - size/2;
 
-  const directionX = (position_mouseX ) - position_playerX ;
+  const directionX = (position_mouseX) - position_playerX ;
   const directionY = (position_mouseY) - position_playerY ;
   player.style.left = (position_mouseX) +'px';
   player.style.top =  position_mouseY + 'px'
@@ -49,8 +49,8 @@ const updatePosition = () => {
     position_playerX = (position_playerX+(directionX*0.0003));
     position_playerY = position_playerY+(directionY*0.0003);
     setPlayerPosition({
-      x: (position_playerX+(directionX*0.0003)),
-      y: (position_playerY+(directionY*0.0003))
+      x: (position_playerX+size/2),
+      y: (position_playerY+size/2)
     })
 
 

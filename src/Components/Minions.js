@@ -7,8 +7,8 @@ export default function Minions({PlayerPosition}){
 
    
     var number = [];
-    for (var i = 0; i < 1; i++) {
-        number.push(<Minion PlayerPosition = {PlayerPosition} />)
+    for (var i = 0; i < 20; i++) {
+        number.push(<Minion PlayerPosition = {PlayerPosition} id={i} />)
     }
    return (
     <>
