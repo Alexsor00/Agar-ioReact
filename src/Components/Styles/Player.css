@@ -8,5 +8,11 @@
     position: absolute;
 
   }
+  body {
+  
+    transition: all .5s;
+    overflow: hidden;
+    zoom: all .5s;
+ }
 
  

@@ -8,6 +8,7 @@ export default function Player({ setPlayerPosition, minionEated }) {
   };
 
   const [intervalID, setIntervalID] = useState(0);
+  const [scaleAmount, setScaleAmount] = useState(1);
 
   const [size, setSize] = useState(170);
   var position_playerX = window.innerWidth / 2 - size / 2;
@@ -22,11 +23,18 @@ export default function Player({ setPlayerPosition, minionEated }) {
 
   const onClickHandler = () => {
     setSize(size + 5);
+    
   };
 
+ 
   useEffect(() => {
     if (minionEated) {
       setSize(size + 25);
+      console.log((size/10000))
+      setScaleAmount(scaleAmount - 0.1)
+  
+
+      document.body.style.transform = `scale(${scaleAmount})`
     }
   }, [minionEated]);
 
@@ -56,11 +64,9 @@ export default function Player({ setPlayerPosition, minionEated }) {
     });
   };
 
-  const setPosition = (restart) => {
-    if(restart){
-      point.x = position_playerX
-      point.y = position_playerY;
-    }
+  const setPosition = (  ) => {
+
+    
     onmousemove = function (e) {
       point.x = e.clientX;
       point.y = e.clientY;
