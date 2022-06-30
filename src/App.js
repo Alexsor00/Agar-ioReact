@@ -8,17 +8,18 @@ import { useEffect, useState } from 'react';
 function App() {
 
   const [PlayerPosition, setPlayerPosition] = useState([])
-
-    
+  const [minionEated, setMinionEated] = useState(null)
+  
+  
   return (
     <div className="App">
 
       <body  className="canvas">
 
         <Grid />
-        <Minions PlayerPosition={PlayerPosition} />
+        <Minions PlayerPosition={PlayerPosition}  setMinionEated={setMinionEated} minionEated={minionEated}/>
 
-        <Player setPlayerPosition={setPlayerPosition} />
+        <Player setPlayerPosition={setPlayerPosition}  PlayerPosition={PlayerPosition} minionEated={minionEated}/>
 
       </body>
     </div>

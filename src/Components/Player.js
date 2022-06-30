@@ -1,92 +1,77 @@
-import { useEffect, useState } from 'react';
-import './Styles/Player.css'
+import { useEffect, useState } from "react";
+import "./Styles/Player.css";
 
-
-export default function Player ({setPlayerPosition}){
+export default function Player({ setPlayerPosition, minionEated }) {
   var point = {
     x: 0,
-    y: 0
-  }
-  var timer;
-  var interval;
-  const [size, setSize] = useState(170)
-  
+    y: 0,
+  };
 
-  const [playerX, setPlayerX] = useState(0)
-  const [playerY, setPlayer] = useState(0)
+  const [intervalID, setIntervalID] = useState(0);
 
+  const [size, setSize] = useState(170);
+  var position_playerX = window.innerWidth / 2 - size / 2;
+  var position_playerY = window.innerHeight / 2 - size / 2;
+
+  const [playerX, setPlayerX] = useState(0);
+  const [playerY, setPlayer] = useState(0);
 
   useEffect(() => {
+    setPosition(false);
+  }, []);
 
-    setPosition()
-  }, [])
+  const onClickHandler = () => {
+    setSize(size + 5);
+  };
 
- const onClickHandler = () => {
-    setSize(size + 5)
-  }
-    
-
-  var position_playerX = 0;
-  var position_playerY = 0;
-
-const updatePosition = () => {
- 
-  const player = document.getElementById('player');
-
-
-  const position_mouseX = point.x  - size/2;
-  const position_mouseY = point.y - size/2;
-
-  const directionX = (position_mouseX) - position_playerX ;
-  const directionY = (position_mouseY) - position_playerY ;
-  player.style.left = (position_mouseX) +'px';
-  player.style.top =  position_mouseY + 'px'
-
-
-    player.style.left = (position_playerX+(directionX*0.0003))+'px'
-    player.style.top = (position_playerY+(directionY*0.0003))+'px'
-
-    position_playerX = (position_playerX+(directionX*0.0003));
-    position_playerY = position_playerY+(directionY*0.0003);
-    setPlayerPosition({
-      x: (position_playerX+size/2),
-      y: (position_playerY+size/2)
-    })
+  useEffect(() => {
+    if (minionEated) {
+      setSize(size + 25);
+    }
+  }, [minionEated]);
 
 
 
-} 
-
-
-
-
-
-
-
-
-
-
- const setPosition = () =>{
- 
-  onmousemove = function(e){
-    clearInterval(interval)
-      point.x = e.clientX;
-      point.y = e.clientY
-     
-      
-        
-      
-         setInterval(() => updatePosition(), 20);
-
-      }
-  
-
-   }
-
-  
+  const updatePosition = () => {
+    const player = document.getElementById("player");
    
+    const position_mouseX = point.x - size / 2;
+    const position_mouseY = point.y - size / 2;
 
-    return(
-        <canvas id='player' className='circle' onClick={onClickHandler}> </canvas>
-    )
+    const directionX = position_mouseX - position_playerX;
+    const directionY = position_mouseY - position_playerY;
+    player.style.left = position_mouseX + "px";
+    player.style.top = position_mouseY + "px";
+    player.style.width = size + "px";
+    player.style.height = size + "px";
+
+    player.style.left = position_playerX + directionX * 0.01 + "px";
+    player.style.top = position_playerY + directionY * 0.01 + "px";
+
+    position_playerX = position_playerX + directionX * 0.01;
+    position_playerY = position_playerY + directionY * 0.01;
+    setPlayerPosition({
+      x: position_playerX + size / 2,
+      y: position_playerY + size / 2,
+    });
+  };
+
+  const setPosition = (restart) => {
+    if(restart){
+      point.x = position_playerX
+      point.y = position_playerY;
+    }
+    onmousemove = function (e) {
+      point.x = e.clientX;
+      point.y = e.clientY;
+    };
+    let myIntervalID = setInterval(() => updatePosition(), 20);
+    setIntervalID(myIntervalID);
+  };
+
+  return (
+    <canvas id="player" className="circle" onClick={onClickHandler}>
+      {" "}
+    </canvas>
+  );
 }

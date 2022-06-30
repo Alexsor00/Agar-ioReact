@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 
 import './Styles/Minion.css'
 
-export default function Minion ({PlayerPosition, id}){
+export default function Minion ({PlayerPosition, id, setMinionEated, minionEated}){
     
   
 
@@ -16,18 +16,20 @@ export default function Minion ({PlayerPosition, id}){
      var b = posy_minion+(12.5) - (PlayerPosition.y);
 
     var c = Math.sqrt( a*a + b*b );
-   if((c-85.5) <= 10) {
-
-    element.style.backgroundColor = "red"
-   } else {
+   if((c-85.5) <= 10 && element) {
+    if(element) setMinionEated(true);
+    element.remove();
+    setElement(null)
+     } else {
+    if(element && minionEated) setMinionEated(false);
    if(element) element.style.backgroundColor = "rgb(173, 216, 230)"
    }
-  }, [PlayerPosition])
+   
+  }, [PlayerPosition.x, PlayerPosition.y])
  
 
-  
 
-
+ 
   
 
     useEffect(() => {
