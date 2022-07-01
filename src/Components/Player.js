@@ -27,19 +27,20 @@ export default function Player({
 
   useEffect(() => {
     if (minionEated) {
-      setSize(size + 25);
+      setSize(size + 2);
       setScaleAmount(scaleAmount - 0.1)
     //  const ele = document.querySelector(".")
     }
   }, [minionEated]);
 
   const updatePosition = () => {
-    const position_mouseX = point.x;
-    const position_mouseY = point.y;
+    const  app = document.querySelector(".App").getBoundingClientRect()
+    const position_mouseX = point.x  - app.left;
+    const position_mouseY = point.y - app.top;
 
     const directionX = position_mouseX - position_playerX;
     const directionY = position_mouseY - position_playerY;
-
+  //  console.log(position_mouseX + " + " + position_playerX + " = " + directionX)
     position_playerX = position_playerX + directionX * 0.01;
     position_playerY = position_playerY + directionY * 0.01;
     setPlayerPosition({
@@ -51,8 +52,10 @@ export default function Player({
   const setPosition = () => {
     onmousemove = function (e) {
       point.x = e.clientX;
-      point.y = e.clientY;
+      point.y = e.clientY ;
+ 
     };
+    
     setInterval(() => updatePosition(), 20);
   };
 

@@ -7,21 +7,20 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [PlayerPosition, setPlayerPosition] = useState({
-    x: window.innerWidth/2,
-    y: window.innerHeight/2
-  })
+  
   const [minionEated, setMinionEated] = useState(null)
   const [size, setSize] = useState(170);
 
-  
+  const [PlayerPosition, setPlayerPosition] = useState({
+    x: window.innerWidth/2 - size / 2,
+    y: window.innerHeight/2 - size / 2
+  })
   const style = {
-    left: -(PlayerPosition.x - window.innerWidth / 2 + size / 2) + 'px',
-    top:  -(PlayerPosition.y -window.innerHeight / 2 + size / 2) + 'px',
+    left: -(PlayerPosition.x - window.innerWidth / 2) + 'px',
+    top:  -(PlayerPosition.y - window.innerHeight / 2) + 'px',
     position: 'absolute',
-    transition: 'all .5s'
+    transition: 'all 1.5s'
   };
-  console.log(style)
   return (
     <div className="App" style={style}>
 
