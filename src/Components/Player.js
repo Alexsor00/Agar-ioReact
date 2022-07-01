@@ -1,21 +1,17 @@
 import { useEffect, useState } from "react";
 import "./Styles/Player.css";
 
-export default function Player({ setPlayerPosition, minionEated }) {
+export default function Player({ setPlayerPosition, PlayerPosition, minionEated, size, setSize }) {
   var point = {
     x: 0,
     y: 0,
   };
 
-  const [intervalID, setIntervalID] = useState(0);
-  const [scaleAmount, setScaleAmount] = useState(1);
+  var body = document.querySelector("body");
 
-  const [size, setSize] = useState(170);
   var position_playerX = window.innerWidth / 2 - size / 2;
   var position_playerY = window.innerHeight / 2 - size / 2;
 
-  const [playerX, setPlayerX] = useState(0);
-  const [playerY, setPlayer] = useState(0);
 
   useEffect(() => {
     setPosition(false);
@@ -23,61 +19,65 @@ export default function Player({ setPlayerPosition, minionEated }) {
 
   const onClickHandler = () => {
     setSize(size + 5);
-    
   };
 
- 
   useEffect(() => {
     if (minionEated) {
       setSize(size + 25);
-      console.log((size/10000))
-      setScaleAmount(scaleAmount - 0.1)
-  
 
-      document.body.style.transform = `scale(${scaleAmount})`
-    }
+       }
   }, [minionEated]);
 
 
 
   const updatePosition = () => {
-    const player = document.getElementById("player");
    
-    const position_mouseX = point.x - size / 2;
-    const position_mouseY = point.y - size / 2;
+    const position_mouseX = point.x;
+    const position_mouseY = point.y;
 
     const directionX = position_mouseX - position_playerX;
     const directionY = position_mouseY - position_playerY;
-    player.style.left = position_mouseX + "px";
-    player.style.top = position_mouseY + "px";
-    player.style.width = size + "px";
-    player.style.height = size + "px";
-
-    player.style.left = position_playerX + directionX * 0.01 + "px";
-    player.style.top = position_playerY + directionY * 0.01 + "px";
+  
+ 
 
     position_playerX = position_playerX + directionX * 0.01;
     position_playerY = position_playerY + directionY * 0.01;
     setPlayerPosition({
-      x: position_playerX + size / 2,
-      y: position_playerY + size / 2,
+      x: position_playerX,
+      y: position_playerY,
     });
   };
 
-  const setPosition = (  ) => {
-
-    
+  const setPosition = () => {
     onmousemove = function (e) {
       point.x = e.clientX;
-      point.y = e.clientY;
-    };
-    let myIntervalID = setInterval(() => updatePosition(), 20);
-    setIntervalID(myIntervalID);
+      point.y = e.clientY   ;
+        };
+   setInterval(() => updatePosition(), 20);
   };
 
+
+  const style = {
+    width: size + 'px',
+    height: size + 'px',
+    left: PlayerPosition.x,
+    top: PlayerPosition.y,
+    transition: 'width 1s, height 1s'
+  }
+  const style2 = {
+    width: 10 + 'px',
+    height: 10 + 'px',
+    left: PlayerPosition.x + size/2 - 10/2,
+    top: PlayerPosition.y  + size/2- 10/2,
+    transition: 'width 1s, height 1s',
+  }
   return (
-    <canvas id="player" className="circle" onClick={onClickHandler}>
-      {" "}
+    <>
+    <canvas id="player" className="circle" style={style} onClick={onClickHandler}>
+    
     </canvas>
-  );
+    <canvas id="player" className="player2" style={style2}>
+
+    </canvas >
+    </>  );
 }

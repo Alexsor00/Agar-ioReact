@@ -3,8 +3,7 @@
 .circle {
     background: lightblue;
     border-radius: 50%;
-    width: 170px;
-    height: 170px;
+
     position: absolute;
 
   }
@@ -15,4 +14,9 @@
     zoom: all .5s;
  }
 
- 
+ .player2 {
+  background-color: red;
+    border-radius: 50%;
+
+    position: absolute;
+ }

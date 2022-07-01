@@ -9,7 +9,8 @@ function App() {
 
   const [PlayerPosition, setPlayerPosition] = useState([])
   const [minionEated, setMinionEated] = useState(null)
-  
+  const [size, setSize] = useState(170);
+
   
   return (
     <div className="App">
@@ -17,9 +18,9 @@ function App() {
       <body  className="canvas">
 
         <Grid />
-        <Minions PlayerPosition={PlayerPosition}  setMinionEated={setMinionEated} minionEated={minionEated}/>
+        <Minions PlayerPosition={PlayerPosition}  setMinionEated={setMinionEated} minionEated={minionEated} size={size}/>
 
-        <Player setPlayerPosition={setPlayerPosition}  PlayerPosition={PlayerPosition} minionEated={minionEated}/>
+        <Player setPlayerPosition={setPlayerPosition}  PlayerPosition={PlayerPosition} minionEated={minionEated} size={size} setSize={setSize}/>
 
       </body>
     </div>
