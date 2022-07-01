@@ -7,15 +7,25 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  const [PlayerPosition, setPlayerPosition] = useState([])
+  const [PlayerPosition, setPlayerPosition] = useState({
+    x: window.innerWidth/2,
+    y: window.innerHeight/2
+  })
   const [minionEated, setMinionEated] = useState(null)
   const [size, setSize] = useState(170);
 
   
+  const style = {
+    left: -(PlayerPosition.x - window.innerWidth / 2 + size / 2) + 'px',
+    top:  -(PlayerPosition.y -window.innerHeight / 2 + size / 2) + 'px',
+    position: 'absolute',
+    transition: 'all .5s'
+  };
+  console.log(style)
   return (
-    <div className="App">
+    <div className="App" style={style}>
 
-      <body  className="canvas">
+      <body  className="canvas" >
 
         <Grid />
         <Minions PlayerPosition={PlayerPosition}  setMinionEated={setMinionEated} minionEated={minionEated} size={size}/>

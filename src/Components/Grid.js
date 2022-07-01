@@ -1,12 +1,5 @@
-import './Styles/Grid.css'
+import "./Styles/Grid.css";
 
 export default function Grid() {
-
- return (
-    <div className='grid'></div>
-
- )
-
-
-
+  return <div className="grid"></div>;
 }
