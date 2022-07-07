@@ -7,20 +7,23 @@ import { useEffect, useState } from 'react';
 
 function App() {
 
-  
+  const INIT_SIZE = 70;
   const [minionEated, setMinionEated] = useState(null)
-  const [size, setSize] = useState(170);
-
+  const [size, setSize] = useState(INIT_SIZE);
+  var zoom = INIT_SIZE / size/2;
+  const width = window.innerWidth;
+  const height = window.innerHeight;
   const [PlayerPosition, setPlayerPosition] = useState({
-    x: window.innerWidth/2 - size / 2,
-    y: window.innerHeight/2 - size / 2
+    x: 3000,
+    y: 3000
   })
-  const style = {
-    left: -(PlayerPosition.x - window.innerWidth / 2) + 'px',
-    top:  -(PlayerPosition.y - window.innerHeight / 2) + 'px',
+ const style = {
+    left: -(PlayerPosition.x - window.innerWidth / 2 +(size/2) ) + 'px',
+    top:  -(PlayerPosition.y - window.innerHeight / 2 +(size/2) ) + 'px',
     position: 'absolute',
-    transition: 'all 1.5s'
+    transition: 'all 0.6s',
   };
+ 
   return (
     <div className="App" style={style}>
 

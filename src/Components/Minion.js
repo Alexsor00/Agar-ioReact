@@ -33,9 +33,9 @@ export default function Minion({
     var el = document.getElementById(`minion${id}`);
 
     const x_minion =
-      Math.floor(Math.random() * (document.querySelector(".grid").getBoundingClientRect().width*2 - 50 - 0 + 1)) + 0;
+      Math.floor(Math.random() * (6000 - 50 - 0 + 1)) + 0;
     const y_minion =
-      Math.floor(Math.random() * (document.querySelector(".grid").getBoundingClientRect().height*2 - 50 - 0 + 1)) + 0;
+      Math.floor(Math.random() * (6000 - 50 - 0 + 1)) + 0;
     const size = Math.floor(Math.random() * (35 - 25 + 1)) + 25;
     setPosx_minion(x_minion);
     setPosy_minion(y_minion);
